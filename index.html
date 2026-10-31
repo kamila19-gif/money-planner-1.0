@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f4e3d">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Camilla's Money Planner</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin:0;background:#f4f7f5;color:#1d2b25}
+header{background:#1f4e3d;color:#fff;padding:12px 16px}
+header h1{margin:0 0 8px;font-size:18px}
+#tabs button,.btn{background:#fff;color:#1f4e3d;border:1px solid #1f4e3d;border-radius:6px;padding:6px 10px;margin:2px;cursor:pointer;font-size:13px}
+#tabs button.on{background:#a8d5bd;font-weight:bold}
+.btn.primary{background:#1f4e3d;color:#fff}
+.btn.small{padding:2px 6px;font-size:12px}
+main{padding:12px 16px;max-width:1300px;margin:auto}
+.card{background:#fff;border-radius:8px;padding:12px;margin-bottom:14px;box-shadow:0 1px 3px #0002}
+h2{font-size:16px;margin:0 0 8px;color:#1f4e3d}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th{background:#1f4e3d;color:#fff;padding:6px;text-align:left;font-size:12px;white-space:nowrap}
+td{border-bottom:1px solid #e3e9e5;padding:4px 6px;white-space:nowrap}
+td.n,th.n{text-align:right}
+tr.tot td{font-weight:bold;background:#eef5f1}
+tr.sec td{font-weight:bold;background:#ddebe3}
+input,select{font-size:13px;padding:4px;border:1px solid #b9c7be;border-radius:4px;background:#fff}
+input.money{width:110px;text-align:right}
+input.w{width:200px}
+.guess{background:#fff2a8}
+.neg{color:#c0392b}.pos{color:#1b7f4c}
+.note{color:#5a6b62;font-size:12px;margin:4px 0}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.kpi{display:inline-block;margin:4px 14px 4px 0}.kpi b{display:block;font-size:17px}
+.warn{background:#fff2a8;padding:8px;border-radius:6px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+<h1>Camilla's Money Planner</h1>
+<div id="tabs"></div>
+<div style="margin-top:6px">
+<button class="btn" onclick="exportXls()">Download Excel (.xls)</button>
+<button class="btn" onclick="exportCsv()">Download transactions (.csv)</button>
+<span id="syncstat" style="font-size:12px;margin-left:6px;opacity:.9"></span>
+<label class="btn" style="display:inline-block">Import .csv<input type="file" accept=".csv" style="display:none" onchange="importCsv(this)"></label>
+</div>
+</header>
+<main id="view"></main>
+
+<script>
+/* ---------- constants ---------- */
+const TYPES=["Income","Expense","PayLater Payment","Pass-through In","Pass-through Out","Transfer In","Transfer Out"];
+const INS=["Income","Pass-through In","Transfer In"];
+const ACCTS=["BCA","ShopeePay","GoPay","Cash","ShopeePayLater","Unknown"];
+const BUCKETS=["Necessities","Culture","Discretionary","Miscellaneous"];
+const TRIGGERS=["Bored","Sad / stressed","Sale / voucher","FOMO / trend","Scrolling social media","Reward myself","Late-night scrolling","Genuine need"];
+const SUBS={
+"Mom allowance":"Income","Side hustle / freelance":"Income","Jastip markup":"Income","Friend repayment / other":"Income","Salary (future)":"Income","Scholarship / stipend (future)":"Income",
+"Cat care":"Necessities","Food & groceries":"Necessities","Household":"Necessities","Personal care":"Necessities","Phone & data":"Necessities","Transport":"Necessities","Health & medical":"Necessities","Utilities (future)":"Necessities","Rent (future)":"Necessities",
+"Books & learning":"Culture","Courses":"Culture","Hobbies":"Culture","Entertainment":"Culture",
+"Eating out & drinks":"Discretionary","Shopping & clothes":"Discretionary","Gifts":"Discretionary","Charity / Sedekah":"Discretionary",
+"Shipping & logistics":"Miscellaneous","Fees & admin":"Miscellaneous","Irregular / annual":"Miscellaneous","Other":"Miscellaneous",
+"PayLater repayment":"Non-budget","Transfer between accounts":"Non-budget","Jastip pass-through":"Non-budget","Savings / investing":"Non-budget"};
+const EXP_SUBS=Object.keys(SUBS).filter(k=>BUCKETS.includes(SUBS[k]));
+const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+/* ---------- helpers ---------- */
+const uid=()=>Math.random().toString(36).slice(2,10);
+const esc=x=>String(x==null?"":x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const fmt=n=>(n<0?"-":"")+"Rp "+Math.abs(Math.round(n)).toLocaleString("id-ID");
+const pct=x=>x===null||!isFinite(x)?"":(x*100).toFixed(1)+"%";
+function today(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+const nowYM=()=>today().slice(0,7);
+function addM(ym,n){let [y,m]=ym.split("-").map(Number);m=m-1+n;y+=Math.floor(m/12);m=((m%12)+12)%12;return y+"-"+String(m+1).padStart(2,"0");}
+function addDays(d,n){const x=new Date(d+"T00:00:00");x.setDate(x.getDate()+n);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0");}
+const opts=(arr,v)=>arr.map(a=>`<option${a===v?" selected":""}>${esc(a)}</option>`).join("");
+const cls=n=>n<0?"neg":"";
+
+/* ---------- default data (your numbers, 30 Oct 2026) ---------- */
+function def(){
+ const T=(date,type,acct,sub,desc,amt,guess,note)=>({id:uid(),date,type,acct,sub,desc,amt,flag:"",guess:!!guess,note:note||""});
+ const D="2026-10-30";
+ return{
+ tx:[
+  T("2026-10-17","Income","Unknown","Mom allowance","From Mom",200000),
+  T("2026-10-21","Income","Unknown","Mom allowance","From Mom",150000),
+  T("2026-10-22","Income","Unknown","Side hustle / freelance","Journal access gig",50000),
+  T("2026-10-25","Income","Unknown","Mom allowance","From Mom (for the cats)",150000),
+  T("2026-10-25","Pass-through In","Unknown","Jastip pass-through","Anita: jastip money (not income)",400000),
+  T("2026-10-28","Income","Unknown","Mom allowance","From Mom (jajan)",100000),
+  T(D,"Income","Unknown","Friend repayment / other","Farida",427,1),
+  T(D,"Expense","ShopeePayLater","Cat care","Frozen meat",126192,1),
+  T(D,"Expense","ShopeePayLater","Cat care","Super jumbo litter box",47828,1),
+  T(D,"Expense","ShopeePayLater","Cat care","Litter sand & scoop",107516,1),
+  T(D,"Expense","ShopeePayLater","Cat care","Dry food (not arrived yet)",149125,1),
+  T(D,"Expense","Unknown","Charity / Sedekah","ShopeeFood Sedekah (7 portions)",117150,1),
+  T(D,"Expense","Unknown","Gifts","Graduation gift (Flip)",39327,1),
+  T(D,"Expense","Unknown","Books & learning","Premarriage ebook (Scaelev)",129000,1),
+  T(D,"Expense","Unknown","Personal care","Ice cream & Pepsident",37700,1),
+  T(D,"Expense","Unknown","Eating out & drinks","Matcha drinks + tip",53800,1),
+  T(D,"Expense","Unknown","Household","Tissue Vela (30 packs)",100702,1),
+  T(D,"Expense","Unknown","Phone & data","Data packages (2x)",20000,1),
+  T(D,"Expense","Unknown","Shipping & logistics","Ongkir Jombang",19900,1),
+  T(D,"Expense","Unknown","Shipping & logistics","KAI Logistik",10000,1)
+ ],
+ asOf:"2026-10-30",
+ bal:{BCA:216802.4,ShopeePay:15013,GoPay:7429,Cash:147000},
+ held:0,
+ bills:[{id:uid(),name:"Nov 2026 bill (25 Oct - 24 Nov)",due:"2026-12-05",bill:211005,refund:0,settled:103489,status:"Unpaid"}],
+ pending:149125,
+ inv:[
+  {id:uid(),group:"Money market",name:"Majoris Pasar Uang Syariah Indonesia",cost:780821,value:786466,coupons:0},
+  {id:uid(),group:"Money market",name:"Sucorinvest Sharia Money Market Fund",cost:1260026,value:1286135,coupons:0},
+  {id:uid(),group:"Retail bonds / sukuk",name:"ORI030-T3",cost:1000000,value:1000000,coupons:12019.5},
+  {id:uid(),group:"Retail bonds / sukuk",name:"SR024-T3",cost:2000000,value:2000000,coupons:46620},
+  {id:uid(),group:"Retail bonds / sukuk",name:"SR023-T3",cost:1000000,value:1000000,coupons:54806.4},
+  {id:uid(),group:"Stocks",name:"BBCA",cost:2418623,value:1488000,coupons:0},
+  {id:uid(),group:"Stocks",name:"BMRI",cost:456684,value:371000,coupons:0},
+  {id:uid(),group:"Stocks",name:"TLKM",cost:325488,value:197000,coupons:0}
+ ],
+ wishes:[],
+ baseline:1200000,
+ pcts:{Necessities:40,Culture:10,Discretionary:20,Miscellaneous:5,Savings:25},
+ charityPct:10
+ };
+}
+let s;
+try{s=JSON.parse(localStorage.getItem("camBudget")||"null");}catch(e){s=null;}
+if(!s)s=def();
+function save(){s._ts=Date.now();try{localStorage.setItem("camBudget",JSON.stringify(s));}catch(e){}schedulePush();}
+let tab="tx",yearSel=2026,monthSel="2026-10",txMonth="all";
+
+/* ---------- calculations ---------- */
+function mo(ym){
+ const x=s.tx.filter(t=>t.date.slice(0,7)===ym);
+ const S=f=>x.filter(f).reduce((a,t)=>a+t.amt,0);
+ const e=t=>t.type==="Expense";
+ const o={inc:S(t=>t.type==="Income"),exp:S(e)};
+ o.net=o.inc-o.exp;
+ BUCKETS.forEach(b=>o[b]=S(t=>e(t)&&SUBS[t.sub]===b));
+ o.charity=S(t=>e(t)&&t.sub==="Charity / Sedekah");
+ o.pl=S(t=>e(t)&&t.acct==="ShopeePayLater");
+ o.imp=S(t=>e(t)&&t.flag==="Impulse");
+ return o;
+}
+function subSum(ym,sub,type){return s.tx.filter(t=>t.date.slice(0,7)===ym&&t.type===type&&t.sub===sub).reduce((a,t)=>a+t.amt,0);}
+function balNow(a){
+ const moved=s.tx.filter(t=>t.acct===a&&a!=="ShopeePayLater"&&t.date>s.asOf).reduce((m,t)=>m+(INS.includes(t.type)?t.amt:-t.amt),0);
+ return(s.bal[a]||0)+moved;
+}
+const cashTotal=()=>["BCA","ShopeePay","GoPay","Cash"].reduce((a,k)=>a+balNow(k),0);
+const cashYours=()=>cashTotal()-(s.held||0);
+function dueFor(date){const d=new Date(date+"T00:00:00");let y=d.getFullYear(),m=d.getMonth()+(d.getDate()<=24?1:2);y+=Math.floor(m/12);m=m%12;return y+"-"+String(m+1).padStart(2,"0")+"-05";}
+function cycleLabel(due){const a=addM(due.slice(0,7),-2),b=addM(due.slice(0,7),-1);return"25 "+MONTHS[+a.slice(5)-1]+" - 24 "+MONTHS[+b.slice(5)-1];}
+function plObligations(){
+ const o=[];
+ s.bills.filter(b=>b.status==="Unpaid"&&b.bill-b.refund-b.settled>0).forEach(b=>o.push({due:b.due,label:b.name+" (from Shopee app)",amt:b.bill-b.refund-b.settled}));
+ const g={};
+ s.tx.filter(t=>t.type==="Expense"&&t.acct==="ShopeePayLater"&&t.date>s.asOf).forEach(t=>{const d=dueFor(t.date);g[d]=(g[d]||0)+t.amt;});
+ Object.keys(g).forEach(d=>o.push({due:d,label:"Purchases you logged, cycle "+cycleLabel(d),amt:g[d]}));
+ o.sort((a,b)=>a.due.localeCompare(b.due));
+ let P=s.tx.filter(t=>t.type==="PayLater Payment"&&t.date>s.asOf).reduce((a,t)=>a+t.amt,0);
+ o.forEach(x=>{const q=Math.min(P,x.amt);x.paid=q;x.rem=x.amt-q;P-=q;});
+ return{list:o,extra:P};
+}
+const unpaidBills=()=>plObligations().list.reduce((a,x)=>a+x.rem,0);
+const invAdd=id=>s.tx.filter(t=>t.target===id&&t.date>s.asOf).reduce((a,t)=>a+(t.type==="Transfer Out"?t.amt:t.type==="Transfer In"?-t.amt:0),0);
+const invVal=i=>i.value+invAdd(i.id);
+const invCost=i=>i.cost+invAdd(i.id);
+const invTotal=()=>s.inv.reduce((a,i)=>a+invVal(i),0);
+const budgetOf=b=>s.baseline*(s.pcts[b]||0)/100;
+function waitDays(p){return p<=50000?1:p<=200000?3:p<=1000000?7:14;}
+
+/* ---------- views ---------- */
+const views={};
+
+views.tx=()=>{
+ const months=[...new Set(s.tx.map(t=>t.date.slice(0,7)))].sort().reverse();
+ const list=s.tx.filter(t=>txMonth==="all"||t.date.slice(0,7)===txMonth).sort((a,b)=>b.date.localeCompare(a.date));
+ const anyGuess=s.tx.some(t=>t.guess);
+ const det=t=>{
+  if(t.date<=s.asOf)return t.acct==="Unknown"?"":"<span class='note'>before start date: already in starting balances</span>";
+  if(t.type==="Expense"&&t.acct==="ShopeePayLater")return"Debt added, due "+dueFor(t.date);
+  if(t.type==="PayLater Payment")return"Reduces PayLater debt";
+  const h2=s.inv.find(i=>i.id===t.target);
+  if(h2)return(t.type==="Transfer Out"?"Into ":"Out of ")+esc(h2.name);
+  return"";};
+ return`
+ <div class="card"><h2>Add a transaction</h2>
+ <div class="row">
+  <input type="date" id="f_date" value="${today()}">
+  <select id="f_type" onchange="updForm()">${opts(TYPES,"Expense")}</select>
+  <select id="f_acct">${opts(ACCTS,"ShopeePay")}</select>
+  <select id="f_sub" onchange="updForm()">${opts(Object.keys(SUBS),"Cat care")}</select>
+  <select id="f_target" style="display:none">${s.inv.map(i=>`<option value="${i.id}">${esc(i.name)}</option>`).join("")}</select>
+  <input id="f_desc" class="w" placeholder="Description">
+  <input id="f_amt" class="money" type="number" placeholder="Amount (Rp)">
+  <select id="f_flag"><option value="">Planned/Impulse?</option><option>Planned</option><option>Impulse</option><option>Unsure</option></select>
+  <button class="btn primary" onclick="addTx()">Add</button>
+ </div>
+ <div class="note"><b>Bought on PayLater:</b> Type = Expense, Account = ShopeePayLater. Cash stays the same and the debt goes up. <b>Paid the bill:</b> Type = PayLater Payment, Account = where the money came out of. <b>Put money into savings:</b> Type = Transfer Out, Subcategory = Savings / investing, then pick the holding. Amount is always positive.</div></div>
+ ${anyGuess?'<div class="warn">Yellow dates were unknown, so I put them on 30 Oct. Click a date and fix it.</div>':""}
+ <div class="card"><h2>All transactions</h2>
+ <div class="row">Show: <select onchange="txMonth=this.value;render()"><option value="all">All months</option>${months.map(m=>`<option${m===txMonth?" selected":""}>${m}</option>`).join("")}</select></div>
+ <div class="wrap"><table><tr><th>Date</th><th>Type</th><th>Account</th><th>Category</th><th>Subcategory</th><th>Description</th><th class="n">Amount</th><th>Planned/Impulse</th><th>What it did</th><th></th></tr>
+ ${list.map(t=>`<tr><td><input type="date" value="${t.date}" class="${t.guess?"guess":""}" onchange="setTx('${t.id}','date',this.value)"></td>
+ <td>${esc(t.type)}</td><td>${esc(t.acct)}</td><td>${esc(SUBS[t.sub]||"")}</td><td>${esc(t.sub)}</td><td>${esc(t.desc)}</td>
+ <td class="n ${INS.includes(t.type)?"pos":""}">${fmt(t.amt)}</td>
+ <td><select onchange="setTx('${t.id}','flag',this.value)"><option value=""></option>${opts(["Planned","Impulse","Unsure"],t.flag)}</select></td>
+ <td>${det(t)}</td>
+ <td><button class="btn small" onclick="delTx('${t.id}')">x</button></td></tr>`).join("")}
+ </table></div></div>`;
+};
+
+views.dash=()=>{
+ const yms=MONTHS.map((_,i)=>yearSel+"-"+String(i+1).padStart(2,"0"));
+ const data=yms.map(mo);
+ const nm=nowYM();
+ const row=(label,f,opt={})=>{
+  const vals=data.map(f);
+  const tot=opt.tot===false?"":vals.reduce((a,b)=>a+b,0);
+  return`<tr class="${opt.cls||""}"><td>${label}</td>${vals.map(v=>`<td class="n ${cls(v)}">${opt.pct?pct(v):fmt(v)}</td>`).join("")}<td class="n"><b>${opt.tot===false?"":(opt.pct?"":fmt(tot))}</b></td><td class="n">${opt.budget!=null?fmt(opt.budget):""}</td></tr>`;
+ };
+ const diff=(label,f,isPct)=>`<tr><td>${label}</td>${data.map((d,i)=>{
+  if(i===0||yms[i]>nm)return"<td></td>";
+  const a=f(d),b=f(data[i-1]);
+  if(isPct)return`<td class="n">${b?pct(a/b-1):""}</td>`;
+  return`<td class="n ${cls(a-b)}">${fmt(a-b)}</td>`;}).join("")}<td></td><td></td></tr>`;
+ const yr=data.reduce((a,d)=>({inc:a.inc+d.inc,exp:a.exp+d.exp}),{inc:0,exp:0});
+ return`
+ <div class="card"><div class="row"><b>Year</b> <input type="number" value="${yearSel}" style="width:80px" onchange="yearSel=+this.value;render()"></div>
+ <div class="kpi">Cash that is yours<b>${fmt(cashYours())}</b></div>
+ <div class="kpi">Invested<b>${fmt(invTotal())}</b></div>
+ <div class="kpi">PayLater unpaid<b>${fmt(unpaidBills())}</b></div>
+ <div class="kpi">Snapshot (cash + invested - PayLater)<b>${fmt(cashYours()+invTotal()-unpaidBills())}</b></div>
+ </div>
+ <div class="card"><h2>Cash flow ${yearSel}</h2><div class="wrap"><table>
+ <tr><th>Rp</th>${MONTHS.map(m=>`<th class="n">${m}</th>`).join("")}<th class="n">Year</th><th class="n">Monthly budget</th></tr>
+ ${row("Income",d=>d.inc,{cls:"tot"})}
+ ${row("Expenses",d=>d.exp,{cls:"tot"})}
+ ${row("Net cash flow",d=>d.net,{cls:"tot"})}
+ <tr class="sec"><td colspan="15">Expenses by category</td></tr>
+ ${BUCKETS.map(b=>row(b,d=>d[b],{budget:budgetOf(b)})).join("")}
+ <tr class="sec"><td colspan="15">Watch list</td></tr>
+ ${row("Charity / Sedekah (inside Discretionary)",d=>d.charity,{budget:s.baseline*s.charityPct/100})}
+ ${row("Spent on ShopeePayLater",d=>d.pl)}
+ ${row("Impulse spending (marked Impulse)",d=>d.imp)}
+ <tr class="sec"><td colspan="15">Selisih: change vs previous month</td></tr>
+ ${diff("Income change",d=>d.inc)}
+ ${diff("Expenses change",d=>d.exp)}
+ ${diff("Expenses change %",d=>d.exp,true)}
+ ${diff("Net cash flow change",d=>d.net)}
+ </table></div>
+ <div class="note">Year net: ${fmt(yr.inc-yr.exp)}. Oct 2026 only has data from 16-30 Oct, so it looks smaller than a full month. Pass-through and transfers are not counted as income or spending.</div></div>`;
+};
+
+views.brk=()=>{
+ const prev=addM(monthSel,-1);
+ const a=mo(prev),b=mo(monthSel);
+ const line=(label,x,y,bold)=>`<tr class="${bold?"tot":""}"><td>${label}</td><td class="n">${fmt(x)}</td><td class="n">${fmt(y)}</td><td class="n ${cls(y-x)}">${fmt(y-x)}</td><td class="n">${x?pct(y/x-1):""}</td></tr>`;
+ return`
+ <div class="card"><div class="row"><b>Month to review</b> <input type="month" value="${monthSel}" onchange="monthSel=this.value;render()"> <span class="note">compared with ${prev}</span></div>
+ <h2>By category</h2><div class="wrap"><table><tr><th>Category</th><th class="n">${prev}</th><th class="n">${monthSel}</th><th class="n">Selisih</th><th class="n">Change %</th></tr>
+ ${BUCKETS.map(k=>line(k,a[k],b[k])).join("")}
+ ${line("Total expenses",a.exp,b.exp,1)}${line("Income",a.inc,b.inc,1)}${line("Net cash flow",a.net,b.net,1)}
+ </table></div>
+ <div class="note">Budget this month: ${BUCKETS.map(k=>k+" "+fmt(budgetOf(k))+" (left "+fmt(budgetOf(k)-b[k])+")").join(" | ")}</div></div>
+ <div class="card"><h2>By subcategory (expenses)</h2><div class="wrap"><table><tr><th>Category</th><th>Subcategory</th><th class="n">${prev}</th><th class="n">${monthSel}</th><th class="n">Selisih</th></tr>
+ ${EXP_SUBS.map(k=>{const x=subSum(prev,k,"Expense"),y=subSum(monthSel,k,"Expense");return(x||y)?`<tr><td>${SUBS[k]}</td><td>${k}</td><td class="n">${fmt(x)}</td><td class="n">${fmt(y)}</td><td class="n ${cls(y-x)}">${fmt(y-x)}</td></tr>`:"";}).join("")}
+ </table></div></div>
+ <div class="card"><h2>Income by source</h2><div class="wrap"><table><tr><th>Source</th><th class="n">${prev}</th><th class="n">${monthSel}</th><th class="n">Selisih</th></tr>
+ ${Object.keys(SUBS).filter(k=>SUBS[k]==="Income").map(k=>{const x=subSum(prev,k,"Income"),y=subSum(monthSel,k,"Income");return(x||y)?`<tr><td>${k}</td><td class="n">${fmt(x)}</td><td class="n">${fmt(y)}</td><td class="n">${fmt(y-x)}</td></tr>`:"";}).join("")}
+ </table></div></div>`;
+};
+
+views.acc=()=>`
+ <div class="card"><h2>Accounts</h2>
+ <div class="row">Balances as of <input type="date" value="${s.asOf}" onchange="s.asOf=this.value;save();render()"> <span class="note">This is the starting date for your accounts, PayLater debt and savings. Only transactions dated AFTER it change them.</span></div>
+ <div class="wrap"><table><tr><th>Account</th><th class="n">Balance on that date</th><th class="n">Balance now</th></tr>
+ ${["BCA","ShopeePay","GoPay","Cash"].map(a=>`<tr><td>${a}</td><td class="n"><input class="money" type="number" step="any" value="${s.bal[a]}" onchange="s.bal['${a}']=+this.value;save();render()"></td><td class="n">${fmt(balNow(a))}</td></tr>`).join("")}
+ <tr class="tot"><td>Total in accounts</td><td></td><td class="n">${fmt(cashTotal())}</td></tr>
+ <tr><td>Money held for others (unspent jastip money)</td><td class="n"><input class="money" type="number" value="${s.held}" onchange="s.held=+this.value;save();render()"></td><td class="n">-${fmt(s.held).replace("Rp","Rp ")}</td></tr>
+ <tr class="tot"><td>Truly yours</td><td></td><td class="n">${fmt(cashYours())}</td></tr>
+ </table></div></div>`;
+
+views.pl=()=>{
+ const ob=plObligations(),unpaid=unpaidBills(),total=unpaid+s.pending,left=cashYours()-total;
+ const next=ob.list.find(x=>x.rem>0);
+ const days=next?Math.round((new Date(next.due+"T00:00:00")-new Date(today()+"T00:00:00"))/864e5):null;
+ return`
+ <div class="card"><h2>What I owe on ShopeePayLater</h2>
+ <div class="note">This fills itself. Every purchase you log with account ShopeePayLater after ${s.asOf} adds to the debt and gets a due date (the 5th after your 25th-24th bill cycle). Every "PayLater Payment" you log reduces it, oldest bill first. Your cash only goes down when you log the payment.</div>
+ <div class="wrap"><table><tr><th>Due date</th><th>What</th><th class="n">Owed</th><th class="n">Paid</th><th class="n">Remaining</th></tr>
+ ${ob.list.map(x=>`<tr><td>${x.due}</td><td>${esc(x.label)}</td><td class="n">${fmt(x.amt)}</td><td class="n">${fmt(x.paid)}</td><td class="n"><b>${fmt(x.rem)}</b></td></tr>`).join("")||"<tr><td colspan='5'>Nothing owed.</td></tr>"}
+ <tr class="tot"><td></td><td>Total owed</td><td class="n">${fmt(ob.list.reduce((a,x)=>a+x.amt,0))}</td><td class="n">${fmt(ob.list.reduce((a,x)=>a+x.paid,0))}</td><td class="n">${fmt(unpaid)}</td></tr>
+ </table></div>
+ ${ob.extra>0?`<div class="warn">You logged ${fmt(ob.extra)} more in PayLater Payments than the debt. Check your entries.</div>`:""}</div>
+ <div class="card"><h2>Can I cover it?</h2>
+ <div class="kpi">Owed on bills<b>${fmt(unpaid)}</b></div>
+ <div class="kpi">Ordered, not billed yet<b><input class="money" type="number" value="${s.pending}" onchange="s.pending=+this.value;save();render()"></b></div>
+ <div class="kpi">Total to set aside<b>${fmt(total)}</b></div>
+ <div class="kpi">Cash that is yours<b>${fmt(cashYours())}</b></div>
+ <div class="kpi">Left after paying<b class="${cls(left)}">${fmt(left)}</b></div>
+ <p><b>${left>=0?"Covered by cash.":"NOT covered: do not add more PayLater."}</b> ${next?"Next due: "+next.due+" ("+(days>=0?days+" days left":Math.abs(days)+" days overdue")+")":""}</p>
+ <div class="note">"Ordered, not billed yet" is for orders that have not arrived and that you have NOT logged here (e.g. the dry food). Rules: 1) Only use PayLater for something you would buy with cash today. 2) Check "Left after paying" before every PayLater order; if it is below 0, stop. 3) Pay the bill from this month's cash, not from investment money.</div></div>
+ <div class="card"><h2>Starting bills (copy from the Shopee app)</h2>
+ <div class="note">Only for bills that already existed in the app on ${s.asOf}. Anything you buy on PayLater after that date is tracked automatically.</div>
+ <div class="wrap"><table>
+ <tr><th>Bill</th><th>Due date</th><th class="n">Bill amount</th><th class="n">Refund</th><th class="n">Settled so far</th><th class="n">Remaining</th><th>Status</th><th></th></tr>
+ ${s.bills.map(b=>`<tr><td><input class="w" value="${esc(b.name)}" onchange="setBill('${b.id}','name',this.value)"></td>
+ <td><input type="date" value="${b.due}" onchange="setBill('${b.id}','due',this.value)"></td>
+ ${["bill","refund","settled"].map(f=>`<td class="n"><input class="money" type="number" value="${b[f]}" onchange="setBill('${b.id}','${f}',+this.value)"></td>`).join("")}
+ <td class="n">${fmt(b.bill-b.refund-b.settled)}</td>
+ <td><select onchange="setBill('${b.id}','status',this.value)">${opts(["Unpaid","Paid"],b.status)}</select></td>
+ <td><button class="btn small" onclick="s.bills=s.bills.filter(x=>x.id!=='${b.id}');save();render()">x</button></td></tr>`).join("")}
+ </table></div>
+ <div class="row" style="margin-top:8px"><button class="btn" onclick="s.bills.push({id:uid(),name:'New bill',due:today(),bill:0,refund:0,settled:0,status:'Unpaid'});save();render()">+ Add bill</button></div></div>`;
+};
+
+views.sav=()=>{
+ const groups=[...new Set(s.inv.map(i=>i.group))];
+ const tv=invTotal();
+ const sum=f=>s.inv.reduce((a,i)=>a+f(i),0);
+ return`<div class="card"><h2>Savings & investing</h2>
+ <div class="note">Blue-box numbers are what Bibit showed on ${s.asOf}. When you log "Transfer Out" with Subcategory "Savings / investing" and pick a holding, the money is added to that holding automatically and taken out of your cash. Market gains and losses you still update by hand from Bibit (change the "on start date" value).</div>
+ <div class="wrap"><table>
+ <tr><th>Group</th><th>Instrument</th><th class="n">Cost on start date</th><th class="n">Value on start date</th><th class="n">Added since (from log)</th><th class="n">Current value</th><th class="n">Coupons received</th><th class="n">Gain / loss</th><th class="n">Return</th><th class="n">Share</th><th></th></tr>
+ ${s.inv.map(i=>{const g=invVal(i)-invCost(i)+i.coupons;return`<tr>
+ <td><input value="${esc(i.group)}" onchange="setInv('${i.id}','group',this.value)"></td>
+ <td><input class="w" value="${esc(i.name)}" onchange="setInv('${i.id}','name',this.value)"></td>
+ ${["cost","value"].map(f=>`<td class="n"><input class="money" type="number" step="any" value="${i[f]}" onchange="setInv('${i.id}','${f}',+this.value)"></td>`).join("")}
+ <td class="n ${cls(invAdd(i.id))}">${fmt(invAdd(i.id))}</td>
+ <td class="n"><b>${fmt(invVal(i))}</b></td>
+ <td class="n"><input class="money" type="number" step="any" value="${i.coupons}" onchange="setInv('${i.id}','coupons',+this.value)"></td>
+ <td class="n ${cls(g)}">${fmt(g)}</td><td class="n">${invCost(i)?pct(g/invCost(i)):""}</td><td class="n">${tv?pct(invVal(i)/tv):""}</td>
+ <td><button class="btn small" onclick="s.inv=s.inv.filter(x=>x.id!=='${i.id}');save();render()">x</button></td></tr>`;}).join("")}
+ <tr class="tot"><td>Total</td><td></td><td class="n">${fmt(sum(i=>i.cost))}</td><td class="n">${fmt(sum(i=>i.value))}</td><td class="n">${fmt(sum(i=>invAdd(i.id)))}</td><td class="n">${fmt(tv)}</td><td class="n">${fmt(sum(i=>i.coupons))}</td><td class="n">${fmt(sum(i=>invVal(i)-invCost(i)+i.coupons))}</td><td></td><td></td><td></td></tr>
+ </table></div>
+ <div class="row" style="margin-top:8px"><button class="btn" onclick="s.inv.push({id:uid(),group:'Stocks',name:'New',cost:0,value:0,coupons:0});save();render()">+ Add holding</button></div>
+ <div class="note">Stock cost = value + the loss Bibit shows. Bonds are at nominal value; their gain is coupons received.</div></div>
+ <div class="card"><h2>By group</h2><div class="wrap"><table><tr><th>Group</th><th class="n">Value</th><th class="n">Share</th></tr>
+ ${groups.map(g=>{const v=s.inv.filter(i=>i.group===g).reduce((a,i)=>a+invVal(i),0);return`<tr><td>${esc(g)}</td><td class="n">${fmt(v)}</td><td class="n">${tv?pct(v/tv):""}</td></tr>`;}).join("")}
+ </table></div>
+ ${(()=>{const mm=s.inv.filter(i=>i.group==="Money market").reduce((a,i)=>a+invVal(i),0);const plan=BUCKETS.reduce((a,b)=>a+budgetOf(b),0);return`<p>Liquid reserve (your cash + money market): <b>${fmt(cashYours()+mm)}</b> = about <b>${plan?((cashYours()+mm)/plan).toFixed(1):"-"}</b> months of planned spending.</p>`;})()}</div>`;
+};
+
+views.imp=()=>{
+ const t=today();
+ const saved=s.wishes.filter(w=>w.decision==="Skipped").reduce((a,w)=>a+w.price,0);
+ const cnt=d=>s.wishes.filter(w=>w.decision===d).length;
+ return`
+ <div class="card"><h2>Pause before buying</h2>
+ <div class="note">Write the item down FIRST. Buy only after the wait is over and you still want it. Ask: 1) Did I want this before I saw it today? 2) Can I pay with cash right now (not PayLater)? 3) Will I still want it when the wait is over? 4) Which budget bucket does it come out of?</div>
+ <div class="row" style="margin-top:8px">
+  <input id="w_item" class="w" placeholder="What do I want?">
+  <input id="w_price" class="money" type="number" placeholder="Price (Rp)">
+  <select id="w_trig">${opts(TRIGGERS,"Sale / voucher")}</select>
+  <button class="btn primary" onclick="addWish()">Add to wait list</button></div>
+ <div class="kpi">Rp saved by skipping<b>${fmt(saved)}</b></div><div class="kpi">Skipped<b>${cnt("Skipped")}</b></div><div class="kpi">Bought after waiting<b>${cnt("Bought")}</b></div><div class="kpi">Still waiting<b>${cnt("Waiting")}</b></div></div>
+ <div class="card"><div class="wrap"><table><tr><th>Date</th><th>Item</th><th class="n">Price</th><th>Trigger</th><th class="n">Wait (days)</th><th>Decide on</th><th>Decision</th><th>Ready?</th><th></th></tr>
+ ${s.wishes.map(w=>{const d=addDays(w.date,waitDays(w.price));return`<tr><td>${w.date}</td><td>${esc(w.item)}</td><td class="n">${fmt(w.price)}</td><td>${esc(w.trigger)}</td><td class="n">${waitDays(w.price)}</td><td>${d}</td>
+ <td><select onchange="setWish('${w.id}',this.value)">${opts(["Waiting","Bought","Skipped"],w.decision)}</select></td>
+ <td>${w.decision==="Waiting"?(t>=d?"<b>Ready: still want it?</b>":"Wait until "+d):""}</td>
+ <td><button class="btn small" onclick="s.wishes=s.wishes.filter(x=>x.id!=='${w.id}');save();render()">x</button></td></tr>`;}).join("")}
+ </table></div></div>
+ <div class="card"><h2>Which feelings trigger my wants?</h2><div class="wrap"><table><tr><th>Trigger</th><th class="n">Times</th><th class="n">Rp wanted</th><th class="n">Rp skipped</th></tr>
+ ${TRIGGERS.map(g=>{const x=s.wishes.filter(w=>w.trigger===g);return`<tr><td>${g}</td><td class="n">${x.length}</td><td class="n">${fmt(x.reduce((a,w)=>a+w.price,0))}</td><td class="n">${fmt(x.filter(w=>w.decision==="Skipped").reduce((a,w)=>a+w.price,0))}</td></tr>`;}).join("")}
+ </table></div>
+ <div class="note">Wait time by price: up to Rp50.000 = 1 day, up to Rp200.000 = 3 days, up to Rp1.000.000 = 7 days, above = 14 days.</div></div>`;
+};
+
+views.set=()=>{
+ const tot=Object.values(s.pcts).reduce((a,b)=>a+b,0);
+ return`<div class="card"><h2>Budget settings</h2>
+ <div class="row"><b>Baseline monthly income (Rp)</b> <input class="money" type="number" value="${s.baseline}" onchange="s.baseline=+this.value;save();render()"></div>
+ <div class="note">PLACEHOLDER: my guess, not your number. Use a low-but-realistic month because your income is not fixed. Budgets below scale from it.</div>
+ <div class="wrap"><table><tr><th>Bucket</th><th class="n">% of baseline</th><th class="n">Rp / month</th></tr>
+ ${Object.keys(s.pcts).map(k=>`<tr><td>${k==="Savings"?"Savings & investing":k}</td><td class="n"><input type="number" style="width:70px" value="${s.pcts[k]}" onchange="s.pcts['${k}']=+this.value;save();render()"></td><td class="n">${fmt(s.baseline*s.pcts[k]/100)}</td></tr>`).join("")}
+ <tr class="tot"><td>Total</td><td class="n ${tot===100?"":"neg"}">${tot}%</td><td class="n">${tot===100?"OK":"must add up to 100%"}</td></tr>
+ </table></div>
+ <div class="row" style="margin-top:8px"><b>Charity / Sedekah cap (% of baseline, inside Discretionary)</b> <input type="number" style="width:70px" value="${s.charityPct}" onchange="s.charityPct=+this.value;save();render()"></div></div>
+ <div class="card"><h2>Sync between phone and laptop</h2>
+ ${sync.url?`<p><b>Connected to your Google Sheet.</b> <span class="note">Every change is saved to the cloud a moment after you make it, and each device checks the cloud when you open the app.</span></p>
+ <div class="row"><button class="btn primary" onclick="pull()">Sync now</button><button class="btn" onclick="disconnectSync()">Disconnect this device</button></div>`
+ :`<div class="note">Paste the web app link and password from your Google Apps Script (setup steps are in the guide I gave you).</div>
+ <div class="row"><input id="sy_url" class="w" style="width:100%;max-width:520px" placeholder="Web app link (https://script.google.com/macros/s/.../exec)"></div>
+ <div class="row"><input id="sy_tok" type="password" placeholder="Password" style="width:240px"><button class="btn primary" onclick="connectSync()">Connect</button></div>`}
+ <div class="note">Status: <span id="syncstat2">${esc(sync.status||(sync.url?"Connected":"Not connected"))}</span></div></div>
+ <div class="card"><h2>Your data</h2>
+ <div class="note">Everything is saved in this browser on this computer. Use the Excel / CSV buttons at the top to keep a backup copy.</div>
+ <button class="btn" onclick="if(confirm('Erase everything and go back to the starting data?')){s=def();save();render();}">Reset to starting data</button></div>`;
+};
+
+/* ---------- actions ---------- */
+function updForm(){
+ const ty=document.getElementById("f_type").value,su=document.getElementById("f_sub");
+ if(ty==="PayLater Payment")su.value="PayLater repayment";
+ const inv=(ty==="Transfer Out"||ty==="Transfer In")&&su.value==="Savings / investing";
+ document.getElementById("f_target").style.display=inv?"":"none";
+}
+function addTx(){
+ const g=id=>document.getElementById(id).value;
+ const amt=+g("f_amt"),type=g("f_type"),acct=g("f_acct");let sub=g("f_sub");
+ if(!g("f_date")||!amt||amt<=0){alert("Please add a date and an amount above 0.");return;}
+ if(type==="PayLater Payment"){sub="PayLater repayment";if(acct==="ShopeePayLater"){alert("Pick the account the money came out of (BCA, ShopeePay, GoPay or Cash).");return;}}
+ let target="";
+ if((type==="Transfer Out"||type==="Transfer In")&&sub==="Savings / investing"){target=g("f_target");if(!target){alert("Add a holding on the Savings page first.");return;}}
+ s.tx.push({id:uid(),date:g("f_date"),type,acct,sub,desc:g("f_desc"),amt,flag:g("f_flag"),guess:false,note:"",target});
+ save();render();
+}
+function setTx(id,f,v){const t=s.tx.find(x=>x.id===id);t[f]=v;if(f==="date")t.guess=false;save();render();}
+function delTx(id){if(confirm("Delete this transaction?")){s.tx=s.tx.filter(x=>x.id!==id);save();render();}}
+function setBill(id,f,v){s.bills.find(x=>x.id===id)[f]=v;save();render();}
+function setInv(id,f,v){s.inv.find(x=>x.id===id)[f]=v;save();render();}
+function addWish(){
+ const item=document.getElementById("w_item").value.trim(),price=+document.getElementById("w_price").value;
+ if(!item||!price){alert("Add the item and its price.");return;}
+ s.wishes.push({id:uid(),date:today(),item,price,trigger:document.getElementById("w_trig").value,decision:"Waiting"});save();render();
+}
+function setWish(id,v){s.wishes.find(x=>x.id===id).decision=v;save();render();}
+
+/* ---------- export / import ---------- */
+function download(name,mime,content){
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([content],{type:mime}));a.download=name;document.body.appendChild(a);a.click();a.remove();
+}
+function tbl(title,head,rows){
+ return`<table border="1"><caption><b>${esc(title)}</b></caption><tr>${head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table><br>`;
+}
+function exportXls(){
+ const yms=MONTHS.map((_,i)=>yearSel+"-"+String(i+1).padStart(2,"0"));
+ const d=yms.map(mo);
+ const line=(n,f)=>[n,...d.map(f),d.reduce((a,x)=>a+f(x),0)];
+ let h="<html xmlns:x='urn:schemas-microsoft-com:office:excel'><head><meta charset='utf-8'></head><body>";
+ h+=tbl("Transactions",["Date","Type","Account","Category","Subcategory","Description","Amount","Planned/Impulse"],s.tx.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(t=>[t.date,t.type,t.acct,SUBS[t.sub]||"",t.sub,t.desc,t.amt,t.flag]));
+ h+=tbl("Cash flow "+yearSel,["Rp",...MONTHS,"Year"],[line("Income",x=>x.inc),line("Expenses",x=>x.exp),line("Net cash flow",x=>x.net),...BUCKETS.map(b=>line(b,x=>x[b])),line("Charity / Sedekah",x=>x.charity),line("Spent on ShopeePayLater",x=>x.pl),line("Impulse spending",x=>x.imp)]);
+ h+=tbl("Accounts (as of "+s.asOf+" plus later transactions)",["Account","Balance now"],[...["BCA","ShopeePay","GoPay","Cash"].map(a=>[a,balNow(a)]),["Held for others",s.held],["Truly yours",cashYours()]]);
+ h+=tbl("ShopeePayLater (what I owe)",["Due","What","Owed","Paid","Remaining"],plObligations().list.map(x=>[x.due,x.label,x.amt,x.paid,x.rem]));
+ h+=tbl("Savings & investing",["Group","Instrument","Cost","Current value","Coupons","Gain/loss"],s.inv.map(i=>[i.group,i.name,invCost(i),invVal(i),i.coupons,invVal(i)-invCost(i)+i.coupons]));
+ h+="</body></html>";
+ download("Camilla_Money_Planner.xls","application/vnd.ms-excel",h);
+}
+function exportCsv(){
+ const q=x=>'"'+String(x==null?"":x).replace(/"/g,'""')+'"';
+ const rows=[["date","type","account","subcategory","category","description","amount","flag","invest_into"]].concat(s.tx.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(t=>[t.date,t.type,t.acct,t.sub,SUBS[t.sub]||"",t.desc,t.amt,t.flag,(s.inv.find(i=>i.id===t.target)||{}).name||""]));
+ download("Camilla_transactions.csv","text/csv","﻿"+rows.map(r=>r.map(q).join(",")).join("\r\n"));
+}
+function parseCsv(txt){
+ const out=[];let row=[],cur="",inq=false;
+ for(let i=0;i<txt.length;i++){const c=txt[i];
+  if(inq){if(c==='"'){if(txt[i+1]==='"'){cur+='"';i++;}else inq=false;}else cur+=c;}
+  else if(c==='"')inq=true;
+  else if(c===","||c===";"){row.push(cur);cur="";}
+  else if(c==="\n"){row.push(cur);out.push(row);row=[];cur="";}
+  else if(c!=="\r")cur+=c;}
+ if(cur||row.length){row.push(cur);out.push(row);}
+ return out;
+}
+function importCsv(inp){
+ const f=inp.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  const rows=parseCsv(String(r.result).replace(/^﻿/,""));
+  const hd=rows.shift().map(x=>x.trim().toLowerCase());
+  const ix=n=>hd.indexOf(n);
+  let n=0;
+  rows.forEach(c=>{
+   const date=c[ix("date")],amt=+c[ix("amount")];
+   if(!date||!amt)return;
+   const type=TYPES.includes(c[ix("type")])?c[ix("type")]:"Expense";
+   const sub=SUBS[c[ix("subcategory")]]?c[ix("subcategory")]:"Other";
+   s.tx.push({id:uid(),date,type,acct:ACCTS.includes(c[ix("account")])?c[ix("account")]:"Unknown",sub,desc:c[ix("description")]||"",amt,flag:c[ix("flag")]||"",guess:false,note:"",target:((s.inv.find(i=>i.name===c[ix("invest_into")])||{}).id)||""});n++;
+  });
+  save();render();alert(n+" transactions imported. Dates must look like 2026-10-30.");
+ };
+ r.readAsText(f);inp.value="";
+}
+
+/* ---------- cloud sync (Google Sheet via Apps Script) ---------- */
+const SYNC_KEY="camSync";
+let sync={url:"",token:"",last:0,status:""};
+try{Object.assign(sync,JSON.parse(localStorage.getItem(SYNC_KEY)||"{}"));}catch(e){}
+function saveSync(){try{localStorage.setItem(SYNC_KEY,JSON.stringify({url:sync.url,token:sync.token,last:sync.last}));}catch(e){}}
+function setStatus(t){sync.status=t;["syncstat","syncstat2"].forEach(i=>{const el=document.getElementById(i);if(el)el.textContent=t;});}
+const clock=()=>new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+let pushT=null,busy=false;
+function schedulePush(){if(!sync.url)return;clearTimeout(pushT);setStatus("Saving to cloud...");pushT=setTimeout(push,1500);}
+async function remoteGet(){
+ const r=await fetch(sync.url+(sync.url.includes("?")?"&":"?")+"token="+encodeURIComponent(sync.token)+"&t="+Date.now());
+ const j=await r.json();if(j.error)throw new Error(j.error);return j;
+}
+async function push(){
+ if(!sync.url||busy)return;busy=true;
+ try{
+  if(!s._ts)s._ts=Date.now();
+  const r=await fetch(sync.url,{method:"POST",body:JSON.stringify({token:sync.token,ts:s._ts,state:JSON.stringify(s)})});
+  const j=await r.json();if(!j.ok)throw new Error(j.error||"failed");
+  sync.last=s._ts;saveSync();setStatus("Synced "+clock());
+ }catch(e){setStatus("Not synced ("+(e.message||"offline")+"). Will retry.");}
+ busy=false;
+}
+function applyRemote(j){
+ s=JSON.parse(j.state);s._ts=j.ts;
+ try{localStorage.setItem("camBudget",JSON.stringify(s));}catch(e){}
+ sync.last=j.ts;saveSync();render();setStatus("Synced "+clock());
+}
+async function pull(){
+ if(!sync.url||busy)return;
+ try{
+  setStatus("Checking cloud...");
+  const j=await remoteGet();
+  if(j.empty){await push();return;}
+  const localChanged=(s._ts||0)>sync.last,remoteChanged=j.ts>sync.last;
+  if(remoteChanged&&localChanged){
+   if(confirm("This device and the cloud both changed since the last sync.\n\nOK = keep the CLOUD version (replaces this device)\nCancel = keep THIS DEVICE (replaces the cloud)"))applyRemote(j);else{s._ts=Date.now();await push();}
+  }else if(remoteChanged)applyRemote(j);
+  else if(localChanged)await push();
+  else setStatus("Synced "+clock());
+ }catch(e){setStatus("Offline or wrong link/password. Working on this device only.");}
+}
+async function connectSync(){
+ const u=document.getElementById("sy_url").value.trim(),t=document.getElementById("sy_tok").value.trim();
+ if(!u||!t){alert("Paste the web app link and your password.");return;}
+ sync.url=u;sync.token=t;sync.last=0;saveSync();
+ try{
+  setStatus("Connecting...");
+  const j=await remoteGet();
+  if(j.empty){await push();}
+  else if(confirm("The cloud already has data (from another device).\n\nOK = load the cloud data onto this device (replaces what is here)\nCancel = replace the cloud with THIS device's data"))applyRemote(j);
+  else{s._ts=Date.now();await push();}
+  render();
+ }catch(e){sync.url="";saveSync();setStatus("Could not connect: "+e.message);alert("Could not connect. Check the link and the password, and that the web app is deployed with access 'Anyone'.");}
+}
+function disconnectSync(){if(confirm("Stop syncing on this device? Your data stays here and in the Sheet.")){sync.url="";sync.token="";sync.last=0;saveSync();setStatus("");render();}}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")pull();});
+window.addEventListener("online",pull);
+
+/* ---------- render ---------- */
+const TABS=[["tx","Transactions"],["dash","Dashboard"],["brk","Breakdown"],["acc","Accounts"],["pl","PayLater"],["sav","Savings"],["imp","Anti-impulse"],["set","Settings"]];
+function render(){
+ document.getElementById("tabs").innerHTML=TABS.map(([k,n])=>`<button class="${k===tab?"on":""}" onclick="tab='${k}';render()">${n}</button>`).join("");
+ document.getElementById("view").innerHTML=views[tab]();
+}
+render();
+if(sync.url)pull();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>
