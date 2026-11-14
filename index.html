@@ -55,11 +55,12 @@ input.w{width:200px}
 /* ---------- constants ---------- */
 const TYPES=["Income","Expense","PayLater Payment","Pass-through In","Pass-through Out","Transfer In","Transfer Out"];
 const INS=["Income","Pass-through In","Transfer In"];
-const ACCTS=["BCA","ShopeePay","GoPay","Cash","ShopeePayLater","Unknown"];
+const CASHACCTS=["BCA","BNI","Jago","ShopeePay","GoPay","Cash"];
+const ACCTS=[...CASHACCTS,"ShopeePayLater","Unknown"];
 const BUCKETS=["Necessities","Culture","Discretionary","Miscellaneous"];
 const TRIGGERS=["Bored","Sad / stressed","Sale / voucher","FOMO / trend","Scrolling social media","Reward myself","Late-night scrolling","Genuine need"];
 const SUBS={
-"Mom allowance":"Income","Side hustle / freelance":"Income","Jastip markup":"Income","Friend repayment / other":"Income","Salary (future)":"Income","Scholarship / stipend (future)":"Income",
+"Mom allowance":"Income","Side hustle / freelance":"Income","Jastip markup":"Income","Friend repayment / other":"Income","Salary":"Income","Scholarship / stipend (future)":"Income",
 "Cat care":"Necessities","Food & groceries":"Necessities","Household":"Necessities","Personal care":"Necessities","Phone & data":"Necessities","Transport":"Necessities","Health & medical":"Necessities","Utilities (future)":"Necessities","Rent (future)":"Necessities",
 "Books & learning":"Culture","Courses":"Culture","Hobbies":"Culture","Entertainment":"Culture",
 "Eating out & drinks":"Discretionary","Shopping & clothes":"Discretionary","Gifts":"Discretionary","Charity / Sedekah":"Discretionary",
@@ -108,7 +109,7 @@ function def(){
   T(D,"Expense","Unknown","Shipping & logistics","KAI Logistik",10000,1)
  ],
  asOf:"2026-10-30",
- bal:{BCA:216802.4,ShopeePay:15013,GoPay:7429,Cash:147000},
+ bal:{BCA:216802.4,BNI:0,Jago:0,ShopeePay:15013,GoPay:7429,Cash:147000},
  held:0,
  bills:[{id:uid(),name:"Nov 2026 bill (25 Oct - 24 Nov)",due:"2026-12-05",bill:211005,refund:0,settled:103489,status:"Unpaid"}],
  pending:149125,
@@ -131,6 +132,8 @@ function def(){
 let s;
 try{s=JSON.parse(localStorage.getItem("camBudget")||"null");}catch(e){s=null;}
 if(!s)s=def();
+s.bal=s.bal||{};CASHACCTS.forEach(a=>{if(s.bal[a]==null)s.bal[a]=0;});
+(s.tx||[]).forEach(t=>{if(t.sub==="Salary (future)")t.sub="Salary";});
 function save(){s._ts=Date.now();try{localStorage.setItem("camBudget",JSON.stringify(s));}catch(e){}schedulePush();}
 let tab="tx",yearSel=2026,monthSel="2026-10",txMonth="all";
 
@@ -152,7 +155,7 @@ function balNow(a){
  const moved=s.tx.filter(t=>t.acct===a&&a!=="ShopeePayLater"&&t.date>s.asOf).reduce((m,t)=>m+(INS.includes(t.type)?t.amt:-t.amt),0);
  return(s.bal[a]||0)+moved;
 }
-const cashTotal=()=>["BCA","ShopeePay","GoPay","Cash"].reduce((a,k)=>a+balNow(k),0);
+const cashTotal=()=>CASHACCTS.reduce((a,k)=>a+balNow(k),0);
 const cashYours=()=>cashTotal()-(s.held||0);
 function dueFor(date){const d=new Date(date+"T00:00:00");let y=d.getFullYear(),m=d.getMonth()+(d.getDate()<=24?1:2);y+=Math.floor(m/12);m=m%12;return y+"-"+String(m+1).padStart(2,"0")+"-05";}
 function cycleLabel(due){const a=addM(due.slice(0,7),-2),b=addM(due.slice(0,7),-1);return"25 "+MONTHS[+a.slice(5)-1]+" - 24 "+MONTHS[+b.slice(5)-1];}
@@ -281,7 +284,7 @@ views.acc=()=>`
  <div class="card"><h2>Accounts</h2>
  <div class="row">Balances as of <input type="date" value="${s.asOf}" onchange="s.asOf=this.value;save();render()"> <span class="note">This is the starting date for your accounts, PayLater debt and savings. Only transactions dated AFTER it change them.</span></div>
  <div class="wrap"><table><tr><th>Account</th><th class="n">Balance on that date</th><th class="n">Balance now</th></tr>
- ${["BCA","ShopeePay","GoPay","Cash"].map(a=>`<tr><td>${a}</td><td class="n"><input class="money" type="number" step="any" value="${s.bal[a]}" onchange="s.bal['${a}']=+this.value;save();render()"></td><td class="n">${fmt(balNow(a))}</td></tr>`).join("")}
+ ${CASHACCTS.map(a=>`<tr><td>${a}</td><td class="n"><input class="money" type="number" step="any" value="${s.bal[a]||0}" onchange="s.bal['${a}']=+this.value;save();render()"></td><td class="n">${fmt(balNow(a))}</td></tr>`).join("")}
  <tr class="tot"><td>Total in accounts</td><td></td><td class="n">${fmt(cashTotal())}</td></tr>
  <tr><td>Money held for others (unspent jastip money)</td><td class="n"><input class="money" type="number" value="${s.held}" onchange="s.held=+this.value;save();render()"></td><td class="n">-${fmt(s.held).replace("Rp","Rp ")}</td></tr>
  <tr class="tot"><td>Truly yours</td><td></td><td class="n">${fmt(cashYours())}</td></tr>
@@ -437,7 +440,7 @@ function exportXls(){
  let h="<html xmlns:x='urn:schemas-microsoft-com:office:excel'><head><meta charset='utf-8'></head><body>";
  h+=tbl("Transactions",["Date","Type","Account","Category","Subcategory","Description","Amount","Planned/Impulse"],s.tx.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(t=>[t.date,t.type,t.acct,SUBS[t.sub]||"",t.sub,t.desc,t.amt,t.flag]));
  h+=tbl("Cash flow "+yearSel,["Rp",...MONTHS,"Year"],[line("Income",x=>x.inc),line("Expenses",x=>x.exp),line("Net cash flow",x=>x.net),...BUCKETS.map(b=>line(b,x=>x[b])),line("Charity / Sedekah",x=>x.charity),line("Spent on ShopeePayLater",x=>x.pl),line("Impulse spending",x=>x.imp)]);
- h+=tbl("Accounts (as of "+s.asOf+" plus later transactions)",["Account","Balance now"],[...["BCA","ShopeePay","GoPay","Cash"].map(a=>[a,balNow(a)]),["Held for others",s.held],["Truly yours",cashYours()]]);
+ h+=tbl("Accounts (as of "+s.asOf+" plus later transactions)",["Account","Balance now"],[...CASHACCTS.map(a=>[a,balNow(a)]),["Held for others",s.held],["Truly yours",cashYours()]]);
  h+=tbl("ShopeePayLater (what I owe)",["Due","What","Owed","Paid","Remaining"],plObligations().list.map(x=>[x.due,x.label,x.amt,x.paid,x.rem]));
  h+=tbl("Savings & investing",["Group","Instrument","Cost","Current value","Coupons","Gain/loss"],s.inv.map(i=>[i.group,i.name,invCost(i),invVal(i),i.coupons,invVal(i)-invCost(i)+i.coupons]));
  h+="</body></html>";
